@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+</head>
+<body>
+<h1>Login</h1>
+<form id="loginForm">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required/>
+    <br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required/>
+    <br>
+    <button type="submit">Login</button>
+</form>
+<script>
+    document.getElementById('loginForm').onsubmit = function(e) {
+        e.preventDefault();
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        if (username === 'admin' && password === 'admin') {
+            localStorage.setItem('loggedIn', 'true');
+            window.location.href = '/members';
+        } else {
+            alert('Incorrect username or password!');
+        }
+    };
+</script>
+</body>
+</html>

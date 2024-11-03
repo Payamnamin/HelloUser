@@ -18,7 +18,7 @@ public class MemberController {
 
     @GetMapping("/")
     public String index() {
-        return "index";
+        return "login";
 
     }
     @GetMapping("/members")
