@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Members</title>
+</head>
+<body>
+<h1>Members List</h1>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Actions</th>
+    </tr>
+    <tr th:each="member : ${members}">
+        <td th:text="${member.name}"></td>
+        <td>
+            <form method="post" action="/remove-member">
+                <input type="hidden" name="name" th:value="${member.name}"/>
+                <button type="submit">Remove</button>
+            </form>
+        </td>
+    </tr>
+</table>
+<a href="/add-member">Add Member</a>
+</body>
+</html>
