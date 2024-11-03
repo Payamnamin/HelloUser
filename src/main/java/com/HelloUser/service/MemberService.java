@@ -1,6 +1,6 @@
 package com.HelloUser.service;
 
-import java.lang.reflect.Member;
+import com.HelloUser.model.Member;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +14,7 @@ public class MemberService {
         return members;
     }
 
-    public void addMember(Member member) {
+    public void addMember(com.HelloUser.model.Member member) {
         members.add(member);
     }
 
