@@ -13,7 +13,7 @@
     <tr th:each="member : ${members}">
         <td th:text="${member.name}"></td>
         <td>
-            <form method="post" action="/remove-member">
+            <form method="post" th:action="@{/remove-member/{id}(id=${member.id})}">
                 <input type="hidden" name="name" th:value="${member.name}"/>
                 <button type="submit">Remove</button>
             </form>
