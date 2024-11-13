@@ -14,11 +14,11 @@ public class MemberService {
         return members;
     }
 
-    public void addMember(com.HelloUser.model.Member member) {
+    public void addMember(Member member) {
         members.add(member);
     }
 
-    public void removeMember(String name) {
-        members.removeIf(member -> member.getName().equals(name));
+    public void removeMember(String id) {
+        members.removeIf(member -> member.getId().equals(id));
     }
 }

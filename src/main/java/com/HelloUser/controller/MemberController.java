@@ -6,9 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-
+import java.util.UUID;
 
 @Controller
 public class MemberController {
@@ -19,28 +20,48 @@ public class MemberController {
     @GetMapping("/")
     public String index() {
         return "login";
-
     }
+
+    @PostMapping("/login")
+    public String login(String username, String password, Model model) {
+        
+        boolean isAuthenticated = authenticate(username, password); 
+
+        if (isAuthenticated) {
+            return "redirect:/members";
+        } else {
+            model.addAttribute("error", true);
+            return "login"; 
+        }
+    }
+
+    
+    private boolean authenticate(String username, String password) {
+        return "user".equals(username) && "pass".equals(password);
+    }
+
     @GetMapping("/members")
     public String members(Model model) {
-        model.addAttribute("members" , memberService.getAllMembers());
+        model.addAttribute("members", memberService.getAllMembers());
         return "members";
     }
 
     @GetMapping("/add-member")
-    public String addMemberForm(){
+    public String addMemberForm() {
         return "add-member";
     }
 
     @PostMapping("/add-member")
     public String addMember(String name) {
-        memberService.addMember(new Member(name));
+        String id = UUID.randomUUID().toString(); 
+        memberService.addMember(new Member(id, name));
         return "redirect:/members";
     }
-   
-    @PostMapping("/remove-member")
-    public String removeMember(String name) {
-        memberService.removeMember(name);
-        return"redirect/members";
-    }
+
+    @PostMapping("/remove-member/{id}")
+public String removeMember(@PathVariable String id) {
+    System.out.println("Removing member with ID: " + id);
+    memberService.removeMember(id);
+    return "redirect:/members";
+}
 }

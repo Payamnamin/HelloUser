@@ -2,10 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Welcome</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-<h1>Welcome to the Member Management System</h1>
-<a href="/members">View Members</a><br>
-<a href="/add-member">Add Member</a>
+<div class="container">
+    <h1 class="my-4">Welcome to the Member Management System</h1>
+    <p class="lead">Please log in to manage members.</p>
+    <a href="/login" class="btn btn-primary">Login</a>
+</div>
 </body>
 </html>
